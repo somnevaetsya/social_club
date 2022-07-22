@@ -97,6 +97,9 @@ func (repo *PostgresRepository) GetInfo() (min, max uint, avg float32, err error
 }
 func (repo *PostgresRepository) GetGraph() (models.Info, error) {
 	rows, err := repo.db.Query("select * from messages;")
+	if err != nil {
+		return models.Info{}, err
+	}
 	defer rows.Close()
 	var data []Result
 	for rows.Next() {

@@ -26,7 +26,7 @@ func (repo *InMemoryRepository) contains(n1 *models.Node, n2 *models.Node) {
 				flag = true
 			}
 		}
-		if flag == false {
+		if !flag {
 			n2.Weight = 1
 			repo.adjMatr[n1.Id] = append(repo.adjMatr[n1.Id], n2)
 		}

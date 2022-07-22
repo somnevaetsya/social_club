@@ -27,7 +27,7 @@ func (useCase *UseCaseImpl) GetInformation() (models.Info, error) {
 	isEmpty, err := useCase.rep.IsEmpty()
 	if err != nil {
 		return models.Info{}, err
-	} else if isEmpty == true {
+	} else if isEmpty {
 		return models.Info{IsEmpty: true}, err
 	}
 	info, err := useCase.rep.GetGraph()
