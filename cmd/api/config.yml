@@ -1,0 +1,8 @@
+postgresHost: 'postgres'
+postgresPort: '5432'
+
+logFile: 'gin.log'
+
+postgresUser: 'social_club'
+postgresPassword: 'social_club'
+postgresDbName: 'social_club'

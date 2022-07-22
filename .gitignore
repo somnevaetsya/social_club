@@ -1,0 +1,4 @@
+.idea
+db_postgres
+gin.log
+server
