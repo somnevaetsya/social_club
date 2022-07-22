@@ -17,7 +17,7 @@ var (
 	_ easyjson.Marshaler
 )
 
-func easyjsonDdc53814DecodeOzonTestAppModels(in *jlexer.Lexer, out *UserInfo) {
+func easyjsonDdc53814DecodeSocialClubAppModels(in *jlexer.Lexer, out *UserInfo) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -50,7 +50,7 @@ func easyjsonDdc53814DecodeOzonTestAppModels(in *jlexer.Lexer, out *UserInfo) {
 		in.Consumed()
 	}
 }
-func easyjsonDdc53814EncodeOzonTestAppModels(out *jwriter.Writer, in UserInfo) {
+func easyjsonDdc53814EncodeSocialClubAppModels(out *jwriter.Writer, in UserInfo) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -70,27 +70,27 @@ func easyjsonDdc53814EncodeOzonTestAppModels(out *jwriter.Writer, in UserInfo) {
 // MarshalJSON supports json.Marshaler interface
 func (v UserInfo) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonDdc53814EncodeOzonTestAppModels(&w, v)
+	easyjsonDdc53814EncodeSocialClubAppModels(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v UserInfo) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonDdc53814EncodeOzonTestAppModels(w, v)
+	easyjsonDdc53814EncodeSocialClubAppModels(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *UserInfo) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonDdc53814DecodeOzonTestAppModels(&r, v)
+	easyjsonDdc53814DecodeSocialClubAppModels(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *UserInfo) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonDdc53814DecodeOzonTestAppModels(l, v)
+	easyjsonDdc53814DecodeSocialClubAppModels(l, v)
 }
-func easyjsonDdc53814DecodeOzonTestAppModels1(in *jlexer.Lexer, out *Node) {
+func easyjsonDdc53814DecodeSocialClubAppModels1(in *jlexer.Lexer, out *Node) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -123,7 +123,7 @@ func easyjsonDdc53814DecodeOzonTestAppModels1(in *jlexer.Lexer, out *Node) {
 		in.Consumed()
 	}
 }
-func easyjsonDdc53814EncodeOzonTestAppModels1(out *jwriter.Writer, in Node) {
+func easyjsonDdc53814EncodeSocialClubAppModels1(out *jwriter.Writer, in Node) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -143,27 +143,27 @@ func easyjsonDdc53814EncodeOzonTestAppModels1(out *jwriter.Writer, in Node) {
 // MarshalJSON supports json.Marshaler interface
 func (v Node) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonDdc53814EncodeOzonTestAppModels1(&w, v)
+	easyjsonDdc53814EncodeSocialClubAppModels1(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Node) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonDdc53814EncodeOzonTestAppModels1(w, v)
+	easyjsonDdc53814EncodeSocialClubAppModels1(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Node) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonDdc53814DecodeOzonTestAppModels1(&r, v)
+	easyjsonDdc53814DecodeSocialClubAppModels1(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Node) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonDdc53814DecodeOzonTestAppModels1(l, v)
+	easyjsonDdc53814DecodeSocialClubAppModels1(l, v)
 }
-func easyjsonDdc53814DecodeOzonTestAppModels2(in *jlexer.Lexer, out *Info) {
+func easyjsonDdc53814DecodeSocialClubAppModels2(in *jlexer.Lexer, out *Info) {
 	isTopLevel := in.IsStart()
 	if in.IsNull() {
 		if isTopLevel {
@@ -211,6 +211,8 @@ func easyjsonDdc53814DecodeOzonTestAppModels2(in *jlexer.Lexer, out *Info) {
 			out.AvgValue = float32(in.Float32())
 		case "max_value":
 			out.MaxValue = uint(in.Uint())
+		case "is_empty":
+			out.IsEmpty = bool(in.Bool())
 		default:
 			in.SkipRecursive()
 		}
@@ -221,7 +223,7 @@ func easyjsonDdc53814DecodeOzonTestAppModels2(in *jlexer.Lexer, out *Info) {
 		in.Consumed()
 	}
 }
-func easyjsonDdc53814EncodeOzonTestAppModels2(out *jwriter.Writer, in Info) {
+func easyjsonDdc53814EncodeSocialClubAppModels2(out *jwriter.Writer, in Info) {
 	out.RawByte('{')
 	first := true
 	_ = first
@@ -256,29 +258,34 @@ func easyjsonDdc53814EncodeOzonTestAppModels2(out *jwriter.Writer, in Info) {
 		out.RawString(prefix)
 		out.Uint(uint(in.MaxValue))
 	}
+	{
+		const prefix string = ",\"is_empty\":"
+		out.RawString(prefix)
+		out.Bool(bool(in.IsEmpty))
+	}
 	out.RawByte('}')
 }
 
 // MarshalJSON supports json.Marshaler interface
 func (v Info) MarshalJSON() ([]byte, error) {
 	w := jwriter.Writer{}
-	easyjsonDdc53814EncodeOzonTestAppModels2(&w, v)
+	easyjsonDdc53814EncodeSocialClubAppModels2(&w, v)
 	return w.Buffer.BuildBytes(), w.Error
 }
 
 // MarshalEasyJSON supports easyjson.Marshaler interface
 func (v Info) MarshalEasyJSON(w *jwriter.Writer) {
-	easyjsonDdc53814EncodeOzonTestAppModels2(w, v)
+	easyjsonDdc53814EncodeSocialClubAppModels2(w, v)
 }
 
 // UnmarshalJSON supports json.Unmarshaler interface
 func (v *Info) UnmarshalJSON(data []byte) error {
 	r := jlexer.Lexer{Data: data}
-	easyjsonDdc53814DecodeOzonTestAppModels2(&r, v)
+	easyjsonDdc53814DecodeSocialClubAppModels2(&r, v)
 	return r.Error()
 }
 
 // UnmarshalEasyJSON supports easyjson.Unmarshaler interface
 func (v *Info) UnmarshalEasyJSON(l *jlexer.Lexer) {
-	easyjsonDdc53814DecodeOzonTestAppModels2(l, v)
+	easyjsonDdc53814DecodeSocialClubAppModels2(l, v)
 }

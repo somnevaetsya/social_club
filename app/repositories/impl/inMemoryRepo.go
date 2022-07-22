@@ -1,8 +1,8 @@
 package repositories_impl
 
 import (
-	"ozon_test/app/models"
-	"ozon_test/app/repositories"
+	"social_club/app/models"
+	"social_club/app/repositories"
 	"strconv"
 	"sync"
 )
@@ -46,6 +46,14 @@ func (repo *InMemoryRepository) findStartPoint() uint {
 	return max
 }
 
+func (repo *InMemoryRepository) IsEmpty() (bool, error) {
+	if len(repo.adjMatr) == 0 {
+		return true, nil
+	} else {
+		return false, nil
+	}
+}
+
 func (repo *InMemoryRepository) Add(n1 *models.Node, n2 *models.Node) error {
 	repo.mutex.Lock()
 	defer repo.mutex.Unlock()
@@ -55,6 +63,8 @@ func (repo *InMemoryRepository) Add(n1 *models.Node, n2 *models.Node) error {
 }
 
 func (repo *InMemoryRepository) GetInfo() (min, max uint, avg float32, err error) {
+	repo.mutex.RLock()
+	defer repo.mutex.RUnlock()
 	used := make(map[uint]bool)
 	startPoint := repo.findStartPoint()
 
@@ -109,6 +119,7 @@ func (repo *InMemoryRepository) GetGraph() (models.Info, error) {
 		MinValue: min,
 		AvgValue: avg,
 		MaxValue: max,
+		IsEmpty:  false,
 	}
 	return info, nil
 }

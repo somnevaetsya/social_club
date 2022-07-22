@@ -4,8 +4,8 @@ import (
 	"errors"
 	"fmt"
 	"github.com/gin-gonic/gin"
-	"ozon_test/app/models"
-	customErrors "ozon_test/pkg/errors"
+	"social_club/app/models"
+	customErrors "social_club/pkg/errors"
 )
 
 func CheckError() gin.HandlerFunc {

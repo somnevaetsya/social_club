@@ -1,4 +1,4 @@
-module ozon_test
+module social_club
 
 go 1.17
 

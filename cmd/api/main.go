@@ -10,11 +10,11 @@ import (
 	"io"
 	"log"
 	"os"
-	"ozon_test/app/handlers"
-	"ozon_test/app/middleware"
-	"ozon_test/app/repositories"
-	"ozon_test/app/repositories/impl"
-	"ozon_test/app/usecases/impl"
+	"social_club/app/handlers"
+	"social_club/app/middleware"
+	"social_club/app/repositories"
+	"social_club/app/repositories/impl"
+	"social_club/app/usecases/impl"
 	"strings"
 )
 

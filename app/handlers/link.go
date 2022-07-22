@@ -4,9 +4,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/mailru/easyjson"
 	"net/http"
-	"ozon_test/app/models"
-	"ozon_test/app/usecases"
-	"ozon_test/pkg/errors"
+	"social_club/app/models"
+	"social_club/app/usecases"
+	"social_club/pkg/errors"
 )
 
 type Handler struct {
@@ -30,12 +30,14 @@ func (handler *Handler) CreateMessage(c *gin.Context) {
 		_ = c.Error(err)
 		return
 	}
-	msgJson, err := msg.MarshalJSON()
+	var isCreated models.Created
+	isCreated.CreatedInfo = true
+	isCreatedJson, err := isCreated.MarshalJSON()
 	if err != nil {
 		_ = c.Error(customErrors.ErrBadInputData)
 		return
 	}
-	c.Data(http.StatusCreated, "application/json; charset=utf-8", msgJson)
+	c.Data(http.StatusCreated, "application/json; charset=utf-8", isCreatedJson)
 }
 
 func (handler *Handler) GetInformation(c *gin.Context) {

@@ -2,8 +2,8 @@ package repositories_impl
 
 import (
 	"github.com/jackc/pgx"
-	"ozon_test/app/models"
-	"ozon_test/app/repositories"
+	"social_club/app/models"
+	"social_club/app/repositories"
 	"strconv"
 )
 
@@ -42,6 +42,18 @@ func (repo *PostgresRepository) findStartPoint() uint {
 		}
 	}
 	return max
+}
+
+func (repo *PostgresRepository) IsEmpty() (bool, error) {
+	var rows int
+	err := repo.db.QueryRow("select count(*) from messages;").Scan(&rows)
+	if err != nil {
+		return false, err
+	} else if rows != 0 {
+		return false, nil
+	} else {
+		return true, nil
+	}
 }
 
 func (repo *PostgresRepository) GetInfo() (min, max uint, avg float32, err error) {
@@ -112,5 +124,5 @@ func (repo *PostgresRepository) GetGraph() (models.Info, error) {
 	if err != nil {
 		return models.Info{}, err
 	}
-	return models.Info{Graph: messages, MaxValue: max, MinValue: min, AvgValue: avg}, nil
+	return models.Info{Graph: messages, MaxValue: max, MinValue: min, AvgValue: avg, IsEmpty: false}, nil
 }

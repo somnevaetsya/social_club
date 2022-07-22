@@ -17,4 +17,5 @@ type Info struct {
 	MinValue uint       `json:"min_value"`
 	AvgValue float32    `json:"avg_value"`
 	MaxValue uint       `json:"max_value"`
+	IsEmpty  bool       `json:"is_empty"`
 }

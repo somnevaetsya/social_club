@@ -1,10 +1,10 @@
 package usecases_impl
 
 import (
-	"ozon_test/app/models"
-	"ozon_test/app/repositories"
-	"ozon_test/app/usecases"
-	"ozon_test/pkg/errors"
+	"social_club/app/models"
+	"social_club/app/repositories"
+	"social_club/app/usecases"
+	"social_club/pkg/errors"
 )
 
 type UseCaseImpl struct {
@@ -24,6 +24,12 @@ func (useCase *UseCaseImpl) CreateMessage(n1 *models.Node, n2 *models.Node) erro
 }
 
 func (useCase *UseCaseImpl) GetInformation() (models.Info, error) {
+	isEmpty, err := useCase.rep.IsEmpty()
+	if err != nil {
+		return models.Info{}, err
+	} else if isEmpty == true {
+		return models.Info{IsEmpty: true}, err
+	}
 	info, err := useCase.rep.GetGraph()
 	if err != nil {
 		return models.Info{}, err

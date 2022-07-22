@@ -10,7 +10,7 @@ API со следующими методами:
 * Получение графа социальных связей, при этом граф должен содержать не только структуру по узлам и ребрам, но и иметь раздел со сводной информацией по количествам коммуникай между пользователями (минимальное, максимальное, среднее).
 
 ## Отправка сообщения
-Для того, чтобы зарегистрировать факт коммуникации между пользователями, необходимо отправить Json-объект следующего формата на URL "/msg" с помощью метода POST:
+Для того, чтобы зарегистрировать факт коммуникации между пользователями, необходимо отправить Json-объект следующего формата на URL "http://localhost:5000/msg" с помощью метода POST:
 ```yaml
 {
   "first_user" : id, 
@@ -23,36 +23,44 @@ API со следующими методами:
 
 
 ## Получение информации о коммуникациях 
-Для получения информации о коммуникациях необходимо сделать запрос на URL "/info" методом GET. Пример получаемого ответа:
+Для получения информации о коммуникациях необходимо сделать запрос на URL "http://localhost:5000/info" методом GET. Пример получаемого ответа:
 ```yaml
 {
-    "graph": [
-        {
-            "user_id": 1,
-            "messages": "{User: 2; Send messages: 3}; {User: 5; Send messages: 2}; "
-        },
-        {
-            "user_id": 2,
-            "messages": "{User: 1; Send messages: 3}; {User: 3; Send messages: 2}; {User: 5; Send messages: 1}; "
-        },
-        {
-            "user_id": 3,
-            "messages": "{User: 2; Send messages: 2}; {User: 5; Send messages: 1}; "
-        },
-        {
-            "user_id": 5,
-            "messages": "{User: 2; Send messages: 1}; {User: 3; Send messages: 1}; {User: 1; Send messages: 2}; {User: 4; Send messages: 2}; "
-        },
-        {
-            "user_id": 4,
-            "messages": "{User: 5; Send messages: 2}; "
-        }
-    ],
-    "min_value": 1,
-    "avg_value": 2.2,
-    "max_value": 3
+  "graph": [
+    {
+      "user_id": 3,
+      "messages": "{User: 4; Messages in dialog: 1}; "
+    },
+    {
+      "user_id": 1,
+      "messages": "{User: 4; Messages in dialog: 1}; "
+    },
+    {
+      "user_id": 4,
+      "messages": "{User: 3; Messages in dialog: 1}; "
+    },
+    {
+      "user_id": 2,
+      "messages": "{User: 4; Messages in dialog: 1}; "
+    }
+  ],
+  "min_value": 1,
+  "avg_value": 0.75,
+  "max_value": 1,
+  "is_empty": false
 }
 ```
+В случае запроса информации из пустой базы данных придет следующий ответ:
+```yaml
+{
+    "graph": null,
+    "min_value": 0,
+    "avg_value": 0,
+    "max_value": 0,
+    "is_empty": true
+}
+```
+
 ## Запуск API
 Для запуска API с in-memory хранилищем:
 ```
